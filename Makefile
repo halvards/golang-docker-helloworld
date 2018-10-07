@@ -29,7 +29,7 @@ compile:
 	go build -o helloworld
 
 local-build:
-	docker built --tag ${IMAGE}
+	docker build --tag ${IMAGE} .
 
 local-push:
 	docker push ${IMAGE}

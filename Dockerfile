@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# https://docs.docker.com/engine/reference/builder/
+
 FROM golang:1.11-alpine as build
 
 COPY . $GOPATH/src/github.com/halvards/golang-docker-helloworld/
