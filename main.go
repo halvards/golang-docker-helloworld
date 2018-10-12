@@ -19,6 +19,9 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/h2c"
 )
 
 func main() {
@@ -29,7 +32,8 @@ func main() {
 		port = "8080"
 	}
 	log.Printf("Listening on port %v", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+port,
+		h2c.NewHandler(http.DefaultServeMux, &http2.Server{})))
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {

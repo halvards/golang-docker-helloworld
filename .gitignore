@@ -42,4 +42,5 @@ vendor/
 *secret*.json
 
 # Compiled output
+golang-docker-helloworld
 helloworld

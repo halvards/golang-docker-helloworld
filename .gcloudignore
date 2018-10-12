@@ -19,3 +19,5 @@
 *.pb.go
 !*.proto
 !Dockerfile
+!go.mod
+!go.sum

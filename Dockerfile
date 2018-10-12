@@ -20,16 +20,16 @@ COPY . $GOPATH/src/github.com/halvards/golang-docker-helloworld/
 WORKDIR $GOPATH/src/github.com/halvards/golang-docker-helloworld/
 
 RUN adduser -D -g '' helloworld && \
-    go get -d -v && \
-    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/helloworld
+    apk add --no-cache git && \
+    GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/helloworld
 
 FROM scratch
 
 COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
-COPY --from=build /go/bin/helloworld /go/bin/helloworld
+COPY --from=build /go/bin/helloworld /opt/helloworld
 
 USER helloworld
 
-ENTRYPOINT ["/go/bin/helloworld"]
+ENTRYPOINT ["/opt/helloworld"]

@@ -26,7 +26,7 @@ build:
 	gcloud builds submit --tag ${IMAGE}
 
 compile:
-	go build -o helloworld
+	GO111MODULE=on go build -o helloworld
 
 local-build:
 	docker build --tag ${IMAGE} .
