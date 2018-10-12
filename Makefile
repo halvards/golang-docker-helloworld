@@ -14,7 +14,7 @@
 
 GOOGLE_CLOUD_PROJECT ?= $(shell gcloud config list --format 'value(core.project)')
 PORT ?= 8080
-IMAGE_NAME ?= golang-docker-helloworld
+IMAGE_NAME ?= $(shell basename "${PWD}")
 IMAGE_TAG ?= latest
 IMAGE ?= gcr.io/${GOOGLE_CLOUD_PROJECT}/${IMAGE_NAME}:${IMAGE_TAG}
 
